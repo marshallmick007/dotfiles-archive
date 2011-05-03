@@ -347,8 +347,8 @@ export PATH=$(echo $PATH | awk -F: '
 END { for (i in arr) printf "%s:" , i; printf "\n"; } ')
 
 # Misc Variables
-export EDITOR="mate"
-export VISUAL="mate"
+export EDITOR="mvim"
+export VISUAL="mvim"
 export HISTCONTROL=ignoredups
 export HOSTFILE=$HOME/.hosts
 export PAGER=less
@@ -368,10 +368,10 @@ fi
 #PS1 function
 function host_load()
 {
-	THRESHOLD_MED=33
+    THRESHOLD_MED=33
     THRESHOLD_HIGH=66
     COLOR_LOW=$GREEN
-	COLOR_MED=$YELLOW
+    COLOR_MED=$YELLOW
     COLOR_HIGH=$RED
 
     if [ $OS = "Linux" ]; then
@@ -382,25 +382,25 @@ function host_load()
     fi
     ONEHUNDRED=$(echo -e "scale=0 \n $ONE/0.01 \nquit \n" | bc)
     if [ $ONEHUNDRED -gt $THRESHOLD_HIGH ]; then
-    	HOST_COLOR=$COLOR_HIGH
-		LOAD_PROMPT="###"
-	elif [ $ONEHUNDRED -gt $THRESHOLD_MED ]; then
-		HOST_COLOR=$COLOR_MED
-		LOAD_PROMPT="##-"
+        HOST_COLOR=$COLOR_HIGH
+        LOAD_PROMPT="###"
+    elif [ $ONEHUNDRED -gt $THRESHOLD_MED ]; then
+        HOST_COLOR=$COLOR_MED
+        LOAD_PROMPT="##-"
     else
         HOST_COLOR=$COLOR_LOW 
-		LOAD_PROMPT="#--"
+        LOAD_PROMPT="#--"
     fi
 }
 
 function git_prompt()
 {
-	GIT_BRANCH_EVAL=`(__git_ps1 " (%s)")`
-	GIT_BRANCH_EVAL=$(echo $GIT_BRANCH_EVAL)
-	GIT_PROMPT=""
-	if [ "$GIT_BRANCH_EVAL" != "" ]; then
-		GIT_PROMPT="-[${GREEN}\]\[${yellow}\]git:\[${GIT_BRANCH_EVAL}\]\[${GREEN}\]]"
-	fi
+    GIT_BRANCH_EVAL=`(__git_ps1 " (%s)")`
+    GIT_BRANCH_EVAL=$(echo $GIT_BRANCH_EVAL)
+    GIT_PROMPT=""
+    if [ "$GIT_BRANCH_EVAL" != "" ]; then
+        GIT_PROMPT="-[${GREEN}\]\[${yellow}\]git:\[${GIT_BRANCH_EVAL}\]\[${GREEN}\]]"
+    fi
 }
 
 vim_pwd()
@@ -441,14 +441,12 @@ function power_prompt()
 {
     host_load
     set_xtitle
-	git_prompt
-	short_pwd
+    git_prompt
+    short_pwd
     if [ "$UID" -eq 0 ]; then
         PS1="[\[${HOST_COLOR}\]\t\[${NC}\]][\[${red}\]\u@\h:\w >\[${NC}\] "
     else
-        #PS1="[\[${HOST_COLOR}\]\t\[${NC}\]] \[${cyan}\]\u\[${NC}\]@\[${red}\]\h\[${NC}\]:\w > "
-		
-		PS1="\n\[${HOST_COLOR}\]${LOAD_PROMPT}\[${GREEN}\][\[${blue}\]\u@\h\[${GREEN}\]]-[\[${purple}\]\${NEW_PWD}\[${GREEN}\]]-[\[${green}\]\$(date +%k:%M)\[${GREEN}\]]\[${GIT_PROMPT}\]\n\[${GREEN}\]#\[${GREEN}\]:>\[${NC}\] "
+        PS1="\n\[${HOST_COLOR}\]${LOAD_PROMPT}\[${GREEN}\][\[${blue}\]\u@\h\[${GREEN}\]]-[\[${purple}\]\${NEW_PWD}\[${GREEN}\]]-[\[${green}\]\$(date +%k:%M)\[${GREEN}\]]\[${GIT_PROMPT}\]\n\[${GREEN}\]#\[${GREEN}\]:>\[${NC}\] "
     fi
 }
 if [ $PROMPT = "power" ]; then
@@ -457,8 +455,7 @@ else
     if [ "$UID" -eq 0 ]; then
         PS1="[\t][\[${red}\]\u@\h:\w]\$\[${NC}\] "
     else
-        #PS1="[\t][\[${cyan}\]\u\[${NC}\]@\[${red}\]\h\[${NC}\]:\w]\$ "
-		PS1="\n#--[\[${blue}\]\u@\h\[${NC}\]]-[\[${purple}\]\w\[\e[m\]]-[\$(date +%k:%M)]\n#:> "
+        PS1="\n#--[\[${blue}\]\u@\h\[${NC}\]]-[\[${purple}\]\w\[\e[m\]]-[\$(date +%k:%M)]\n#:> "
     fi
 fi
 
@@ -749,7 +746,7 @@ function lowercase()  # move filenames to lowercase  # not working on mac
 
 function jquery()
 {
-	curl http://code.jquery.com/jquery-1.5.min.js > jquery.js
+	curl http://code.jquery.com/jquery-1.6.min.js > jquery.js
 }
 
 function rot13()
@@ -800,34 +797,23 @@ function clean_downloads()
     ~/bin/sweep.rb ~/Downloads
 }
 
-function backupbash()
-{
-	BPATH="${HOME}${BACKUPDIR}"
-	if [ -d "${BPATH}" ]; then
-		echo "Backing up .bashrc to ${BPATH}/bashrc"
-		cp ~/.bashrc ${BPATH}/bashrc
-	else
-		echo "Backup directory ${BPATH} does not exist!"
-	fi
-}
-
 function backupconfigs()
 {
-	echo -e "${E_PURPLE}Backing up config files to ${BPATH}${E_NC}"
-	BPATH="${BACKUPDIR}/configs"
-	if [ -d "${BPATH}" ]; then
-		echo "Backing up .bashrc to ${BPATH}/bashrc"
-		cp ~/.bashrc ${BPATH}/bashrc
-		echo "Backing up .gitconfig to ${BPATH}/gitconfig"
-		cp ~/.gitconfig ${BPATH}/gitconfig
-		echo "Backing up .inputrc to ${BPATH}/inputrc"
-		cp ~/.inputrc ${BPATH}/inputrc
-		echo "Backing up .profile to ${BPATH}/profile"
-		cp ~/.profile ${BPATH}/profile
-		echo "Backing up hosts file to ${BPATH}/hosts"
-		cp /etc/hosts ${BPATH}/hosts
-		echo "Backing up httpd.conf file to ${BPATH}/httpd.conf"
-		cp /Applications/MAMP/conf/apache/httpd.conf ${BPATH}/httpd.conf
+    echo -e "${E_PURPLE}Backing up config files to ${BPATH}${E_NC}"
+    BPATH="${BACKUPDIR}/configs"
+    if [ -d "${BPATH}" ]; then
+        echo "Backing up .bashrc to ${BPATH}/bashrc"
+        cp ~/.bashrc ${BPATH}/bashrc
+        echo "Backing up .gitconfig to ${BPATH}/gitconfig"
+        cp ~/.gitconfig ${BPATH}/gitconfig
+        echo "Backing up .inputrc to ${BPATH}/inputrc"
+        cp ~/.inputrc ${BPATH}/inputrc
+        echo "Backing up .profile to ${BPATH}/profile"
+        cp ~/.profile ${BPATH}/profile
+        echo "Backing up hosts file to ${BPATH}/hosts"
+        cp /etc/hosts ${BPATH}/hosts
+        echo "Backing up httpd.conf file to ${BPATH}/httpd.conf"
+        cp /Applications/MAMP/conf/apache/httpd.conf ${BPATH}/httpd.conf
         echo "Backing up Pentadactyl configuration"
         cp ~/.pentadactylrc ${BPATH}/pentadactylrc
         echo "Backing up .rvmrc file to ${BPATH}/rvmrc"
@@ -842,56 +828,55 @@ function backupconfigs()
         echo -e "${E_PURPLE}Dumping dot files to github dropbox. ${BACKUPGIT}${E_NC}"
         cp -Rv ${BPATH}/* ${BACKUPGIT}
         echo -e "${E_RED}Don't forget to git commit the files in ${BACKUPGIT}${E_NC}"
-	else
-		echo "Backup directory ${BPATH} does not exist!"
-	fi
+    else
+        echo "Backup directory ${BPATH} does not exist!"
+    fi
 }
 
 function backupscripts()
 {
-	BPATH="${BACKUPDIR}/scripts"
-	if [ -d "${BPATH}" ]; then
-		echo -e "${E_PURPLE}Backing up ~/bin folder to ${BPATH}${E_NC}"
-		cp -v ~/bin/* ${BPATH}
-	else
-		echo "Backup directory ${BPATH} does not exist!"
-	fi
+    BPATH="${BACKUPDIR}/scripts"
+    if [ -d "${BPATH}" ]; then
+        echo -e "${E_PURPLE}Backing up ~/bin folder to ${BPATH}${E_NC}"
+        cp -v ~/bin/* ${BPATH}
+    else
+        echo "Backup directory ${BPATH} does not exist!"
+    fi
 }
 
 function backup1pass()
 {
-	echo -e "${E_PURPLE}Backing up 1Password keychain${BPATH}${E_NC}"
-	if [ -f ~/bin/backup1pass.py ]; then
-		~/bin/backup1pass.py
-	else
-		echo "Unable to backup 1Password"
-	fi
+    echo -e "${E_PURPLE}Backing up 1Password keychain${BPATH}${E_NC}"
+    if [ -f ~/bin/backup1pass.py ]; then
+        ~/bin/backup1pass.py
+    else
+        echo "Unable to backup 1Password"
+    fi
 }
 
 function backup()
 {
-	#TODO: 	Backup CyberDuck bookmarks
-	#		Backup GlimmerBlocker settings
-	#		GPG Public Key
-	#		1Password backup integration
-	#		Source Code
-	#		Select Documents
-	backupscripts
-	backupconfigs
-	backup1pass
+    #TODO:  Backup CyberDuck bookmarks
+    #       Backup GlimmerBlocker settings
+    #       GPG Public Key
+    #       Source Code
+    #       Select Documents
+    backupscripts
+    backupconfigs
+    backup1pass
 }
 
 function _help()
 {
-	echo -e "[${E_PURPLE}backup${E_NC}]        - Performs all known backup operations"
-	echo -e "[${E_PURPLE}backupconfigs${E_NC}] - Copies a select set of .config files to a backup directory"
-	echo -e "[${E_PURPLE}backupscripts${E_NC}] - Copies the contents of ~/bin to a backup directory"
-	echo -e "[${E_PURPLE}ii${E_NC}]            - Generates a system 'report' of the current machine stats"
-	echo -e "[${E_PURPLE}mkcd${E_NC}]          - Creates a directory and cd's into it"
-	echo -e "[${E_PURPLE}historyhawk${E_NC}]   - Bash history summary"
-	echo -e "[${E_PURPLE}serve${E_NC}]         - Starts Python's SimpleHTTPServer using the specified directory"  # no description should be longer than this one!
+    echo -e "[${E_PURPLE}backup${E_NC}]        - Performs all known backup operations"
+    echo -e "[${E_PURPLE}backupconfigs${E_NC}] - Copies a select set of .config files to a backup directory"
+    echo -e "[${E_PURPLE}backupscripts${E_NC}] - Copies the contents of ~/bin to a backup directory"
+    echo -e "[${E_PURPLE}ii${E_NC}]            - Generates a system 'report' of the current machine stats"
+    echo -e "[${E_PURPLE}mkcd${E_NC}]          - Creates a directory and cd's into it"
+    echo -e "[${E_PURPLE}historyhawk${E_NC}]   - Bash history summary"
+    echo -e "[${E_PURPLE}serve${E_NC}]         - Starts Python's SimpleHTTPServer using the specified directory"  # no description should be longer than this one!
     echo -e "[${E_PURPLE}bashmarks (s, g, l)${E_NC}] - Creates aliases for folders for easy cd'ing"  # no description should be longer than this one!
-		
+
 }
 
 fi  #end interactive check
