@@ -4,10 +4,11 @@ let mapleader=","
 
 syntax enable
 
-set gfn=Inconsolata:h14
+"set gfn=Inconsolata:h14
+set gfn=Menlo:h12
 
 set background=dark
-colorscheme solarized
+colorscheme solarized-mm
 " colorscheme mustang-mm
 
 set tabstop=4
@@ -39,8 +40,8 @@ nnoremap <leader><space> :noh<cr>
 set list listchars=tab:▸\ ,eol:¬,trail:·
 
 " This is for solarized
-hi NonText guifg=#25515B guibg=NONE
-hi SpecialKey guifg=#25515B guibg=NONE
+" hi NonText guifg=#25515B guibg=NONE
+" hi SpecialKey guifg=#25515B guibg=NONE
 
 " map ; to do the same as :
 nnoremap ; :
@@ -88,6 +89,5 @@ let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
 
 " }}}
 
-
-
-
+" CSS Files - https://github.com/skammer/vim-css-color/issues/1
+au BufRead,BufNewFile *.scss set filetype=css
