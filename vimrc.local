@@ -89,5 +89,17 @@ let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
 
 " }}}
 
+
+" map ctrl-left ctrl-right to move to next/prev buffers
+" fix for console/terminal first, though
+map Oc <C-Right>
+map Od <C-Left>
+
+" Be certain these two lines have no trailing spaces
+" Rehighlight visual block after left/right shift
+vnoremap < <gv
+vnoremap > >gv
+
+
 " CSS Files - https://github.com/skammer/vim-css-color/issues/1
 au BufRead,BufNewFile *.scss set filetype=css

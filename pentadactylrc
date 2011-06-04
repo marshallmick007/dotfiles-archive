@@ -36,6 +36,6 @@ highlight WarningMsg color:#ffffff; background-color:#333333 !important; font-we
 mapgroup! user
 set defsearch=ddg
 set guioptions=bCrsmTB
-set passkeys='https://www\.google\.com/reader':jk,'https://duckduckgo\.com':jklohvt!1sr,'http://www\.boston\.com':jk
+set passkeys='https://www\.google\.com/reader/view':jk,'https://duckduckgo\.com':jklohvt!1sr,'http://www\.boston\.com':jk
 
 " vim: set ft=pentadactyl:

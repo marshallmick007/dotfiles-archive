@@ -347,8 +347,8 @@ export PATH=$(echo $PATH | awk -F: '
 END { for (i in arr) printf "%s:" , i; printf "\n"; } ')
 
 # Misc Variables
-export EDITOR="mvim"
-export VISUAL="mvim"
+export EDITOR="nano"
+export VISUAL="nano"
 export HISTCONTROL=ignoredups
 export HOSTFILE=$HOME/.hosts
 export PAGER=less
@@ -799,8 +799,8 @@ function clean_downloads()
 
 function backupconfigs()
 {
-    echo -e "${E_PURPLE}Backing up config files to ${BPATH}${E_NC}"
     BPATH="${BACKUPDIR}/configs"
+    echo -e "${E_PURPLE}Backing up config files to ${BPATH}${E_NC}"
     if [ -d "${BPATH}" ]; then
         echo "Backing up .bashrc to ${BPATH}/bashrc"
         cp ~/.bashrc ${BPATH}/bashrc
