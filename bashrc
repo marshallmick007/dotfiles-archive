@@ -819,6 +819,7 @@ function backupconfigs()
         echo "Backing up .rvmrc file to ${BPATH}/rvmrc"
         cp ~/.rvmrc ${BPATH}/rvmrc
         echo "Backing up VIM"
+        cp ~/.janus.rake ${BPATH}/vim/janus.rake
         cp ~/.vim/vimrc ${BPATH}/vim/vimrc
         cp ~/.vim/gvimrc ${BPATH}/vim/gvimrc
         cp ~/.vim/README.markdown ${BPATH}/vim/README.markdown
