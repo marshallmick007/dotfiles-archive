@@ -11,9 +11,9 @@ set background=dark
 colorscheme solarized-mm
 " colorscheme mustang-mm
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 
 " Remove MacVIM crappy scrollbars, leave the right side
 set guioptions+=LlRrb

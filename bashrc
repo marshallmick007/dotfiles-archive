@@ -317,7 +317,7 @@ alias WORD="ruby -e 'printf(\"0x%04X\n\", ARGV[0])'"
 
 # Get readable list of network IPs
 #alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
-alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias myip="jsonip.rb"
 alias flush="dscacheutil -flushcache" # Flush DNS cache
 
 #-----------------------------------------------------------

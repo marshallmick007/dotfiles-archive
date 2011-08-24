@@ -1,6 +1,7 @@
 set nocompatible
 
-let mapleader=";"
+" leader set in .vimrc.local
+" let mapleader=";"
 
 set number
 set ruler
