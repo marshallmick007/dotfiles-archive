@@ -814,8 +814,8 @@ function backupconfigs()
         cp /etc/hosts ${BPATH}/hosts
         echo "Backing up httpd.conf file to ${BPATH}/httpd.conf"
         cp /Applications/MAMP/conf/apache/httpd.conf ${BPATH}/httpd.conf
-        echo "Backing up Pentadactyl configuration"
-        cp ~/.pentadactylrc ${BPATH}/pentadactylrc
+        echo "Backing up powconfig configuration"
+        cp ~/.powconfig ${BPATH}/powconfig
         echo "Backing up .rvmrc file to ${BPATH}/rvmrc"
         cp ~/.rvmrc ${BPATH}/rvmrc
         echo "Backing up VIM"
