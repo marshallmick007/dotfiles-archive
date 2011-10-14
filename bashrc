@@ -602,6 +602,11 @@ function my_ip()  # sucky.  interface must be hardcoded.  needs work
     MY_IP=$(/sbin/ifconfig $INTERFACE | awk '/inet / { print $2 } ' | sed -e s/addr://)
 }
 
+function local_ip()
+{
+  echo `ifconfig en1 | grep "inet" | grep -v 127.0.0.1 | grep -v inet6 | awk '{print $2}'`
+}
+
 function ii()  # get current host related info  # kind of works on mac.  different interface.  dynamic-able?
 {
     echo -e "\nYou are logged onto ${E_PURPLE}$HOST"
@@ -878,6 +883,31 @@ function _help()
     echo -e "[${E_PURPLE}serve${E_NC}]         - Starts Python's SimpleHTTPServer using the specified directory"  # no description should be longer than this one!
     echo -e "[${E_PURPLE}bashmarks (s, g, l)${E_NC}] - Creates aliases for folders for easy cd'ing"  # no description should be longer than this one!
 
+}
+#
+# Pow Scripts
+#
+function pow_stop()
+{
+  echo "Shutting down Pow..."
+  launchctl unload "$HOME/Library/LaunchAgents/cx.pow.powd.plist" 2>/dev/null || true
+}
+
+function pow_start()
+{
+  echo "Starting Pow..."
+  launchctl load -Fw "$HOME/Library/LaunchAgents/cx.pow.powd.plist" 2>/dev/null
+}
+
+
+function installpow()
+{
+  curl get.pow.cx | sh
+}
+
+function uninstallpow()
+{
+  curl get.pow.cx/uninstall.sh | sh
 }
 
 fi  #end interactive check
