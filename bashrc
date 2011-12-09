@@ -821,6 +821,8 @@ function backupconfigs()
         cp /Applications/MAMP/conf/apache/httpd.conf ${BPATH}/httpd.conf
         echo "Backing up powconfig configuration"
         cp ~/.powconfig ${BPATH}/powconfig
+        echo "Backing up .gdbinit"
+        cp ~/.gdbinit ${BPATH}/gdbinit
         echo "Backing up .rvmrc file to ${BPATH}/rvmrc"
         cp ~/.rvmrc ${BPATH}/rvmrc
         echo "Backing up VIM"
