@@ -1,4 +1,5 @@
 hosts
 **/README.markdown
 gitconfig
+httpd-vhosts.conf
 .DS_Store
