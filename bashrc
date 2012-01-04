@@ -817,6 +817,8 @@ function show-archive()  # not tested on mac
         cp ~/.bashrc ${BPATH}/bashrc
         echo "Backing up .gitconfig to ${BPATH}/gitconfig"
         cp ~/.gitconfig ${BPATH}/gitconfig
+        echo "Backing up .gitignore_global to ${BPATH}/gitignore_global"
+        cp ~/.gitignore_global ${BPATH}/gitignore_global
         echo "Backing up .inputrc to ${BPATH}/inputrc"
         cp ~/.inputrc ${BPATH}/inputrc
         echo "Backing up .profile to ${BPATH}/profile"
