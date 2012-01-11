@@ -211,8 +211,8 @@ if [ "$PS1" ]; then  # If running interactively, then run till fi at EOF:
   #@ Ruby Development
   #-----------------------------------------------------------
 
-  # This loads RVM into a shell session.
-  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  
+ # This loads RVM into a shell session.
+ [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"   
 
   source ~/.git-completion.bash
 
@@ -405,6 +405,18 @@ function git_prompt()
   fi
 }
 
+function rvm_prompt()
+{
+  IS_GLOBAL=`(~/.rvm/bin/rvm-prompt g)`
+  RVM_PROMPT=""
+  if [ "$IS_GLOBAL" != "@global" ] &&
+     [ "$IS_GLOBAL" != "" ];  then
+    #RVM_VERSION_EVAL=`(~/.rvm/bin/rvm-prompt)`
+
+    RVM_PROMPT="-[${GREEN}\]\[${CYAN}\]rvm:\[${IS_GLOBAL}\]\[${GREEN}\]]"
+  fi
+}
+
 vim_pwd()
 {
   _pwd=`pwd | sed "s#$HOME#~#"`
@@ -445,10 +457,11 @@ function power_prompt()
   set_xtitle
   git_prompt
   short_pwd
+  rvm_prompt
   if [ "$UID" -eq 0 ]; then
     PS1="[\[${HOST_COLOR}\]\t\[${NC}\]][\[${red}\]\u@\h:\w >\[${NC}\] "
   else
-    PS1="\n\[${HOST_COLOR}\]${LOAD_PROMPT}\[${GREEN}\][\[${blue}\]\u@\h\[${GREEN}\]]-[\[${purple}\]\${NEW_PWD}\[${GREEN}\]]-[\[${green}\]\$(date +%k:%M)\[${GREEN}\]]\[${GIT_PROMPT}\]\n\[${GREEN}\]#\[${GREEN}\]:>\[${NC}\] "
+    PS1="\n\[${HOST_COLOR}\]${LOAD_PROMPT}\[${GREEN}\][\[${blue}\]\u@\h\[${GREEN}\]]-[\[${purple}\]\${NEW_PWD}\[${GREEN}\]]-[\[${green}\]\$(date +%k:%M)\[${GREEN}\]]\[${GIT_PROMPT}\]\[${RVM_PROMPT}\]\n\[${GREEN}\]#\[${GREEN}\]:>\[${NC}\] "
   fi
 }
 if [ $PROMPT = "power" ]; then
@@ -922,4 +935,9 @@ function show-archive()  # not tested on mac
       curl get.pow.cx/uninstall.sh | sh
     }
 
+    # This has to be last!
+
+    
+
   fi  #end interactive check
+
