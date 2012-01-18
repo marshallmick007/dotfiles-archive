@@ -400,8 +400,14 @@ function git_prompt()
   GIT_BRANCH_EVAL=`(__git_ps1 " (%s)")`
   GIT_BRANCH_EVAL=$(echo $GIT_BRANCH_EVAL)
   GIT_PROMPT=""
+  # inspired by: https://gist.github.com/409780
+  GIT_STATUS="$(git status 2> /dev/null)"
+  GIT_STATUS_BADGE=""
   if [ "$GIT_BRANCH_EVAL" != "" ]; then
-    GIT_PROMPT="-[${GREEN}\]\[${yellow}\]git:\[${GIT_BRANCH_EVAL}\]\[${GREEN}\]]"
+    if [[ ! ${GIT_STATUS}} =~ "working directory clean" ]]; then
+      GIT_STATUS_BADGE="${RED}⚡"
+    fi
+    GIT_PROMPT="-[${GREEN}\]\[${yellow}\]git:\[${GIT_BRANCH_EVAL}\]\[${GIT_STATUS_BADGE}\]\[${GREEN}\]]"
   fi
 }
 
