@@ -385,19 +385,22 @@ function host_load()
   ONEHUNDRED=$(echo -e "scale=0 \n $ONE/0.01 \nquit \n" | bc)
   if [ $ONEHUNDRED -gt $THRESHOLD_HIGH ]; then
     HOST_COLOR=$COLOR_HIGH
-    LOAD_PROMPT="###"
+    #LOAD_PROMPT="###"
+    LOAD_PROMPT="▇"
   elif [ $ONEHUNDRED -gt $THRESHOLD_MED ]; then
     HOST_COLOR=$COLOR_MED
-    LOAD_PROMPT="##-"
+    #LOAD_PROMPT="##-"
+    LOAD_PROMPT="▅"
   else
     HOST_COLOR=$COLOR_LOW 
-    LOAD_PROMPT="#--"
+    #LOAD_PROMPT="#--"
+    LOAD_PROMPT="▂"
   fi
 }
 
 function git_prompt()
 {
-  GIT_BRANCH_EVAL=`(__git_ps1 " (%s)")`
+  GIT_BRANCH_EVAL=`(__git_ps1 " %s")`
   GIT_BRANCH_EVAL=$(echo $GIT_BRANCH_EVAL)
   GIT_PROMPT=""
   # inspired by: https://gist.github.com/409780
@@ -405,9 +408,9 @@ function git_prompt()
   GIT_STATUS_BADGE=""
   if [ "$GIT_BRANCH_EVAL" != "" ]; then
     if [[ ! ${GIT_STATUS}} =~ "working directory clean" ]]; then
-      GIT_STATUS_BADGE="${RED}⚡"
+      GIT_STATUS_BADGE=" ${RED}⚡"
     fi
-    GIT_PROMPT="-[${GREEN}\]\[${yellow}\]git:\[${GIT_BRANCH_EVAL}\]\[${GIT_STATUS_BADGE}\]\[${GREEN}\]]"
+    GIT_PROMPT="-[${GREEN}\]\[${yellow}\]± \[${GIT_BRANCH_EVAL}\]\[${GIT_STATUS_BADGE}\]\[${GREEN}\]]"
   fi
 }
 
@@ -467,7 +470,7 @@ function power_prompt()
   if [ "$UID" -eq 0 ]; then
     PS1="[\[${HOST_COLOR}\]\t\[${NC}\]][\[${red}\]\u@\h:\w >\[${NC}\] "
   else
-    PS1="\n\[${HOST_COLOR}\]${LOAD_PROMPT}\[${GREEN}\][\[${blue}\]\u@\h\[${GREEN}\]]-[\[${purple}\]\${NEW_PWD}\[${GREEN}\]]-[\[${green}\]\$(date +%k:%M)\[${GREEN}\]]\[${GIT_PROMPT}\]\[${RVM_PROMPT}\]\n\[${GREEN}\]#\[${GREEN}\]:>\[${NC}\] "
+    PS1="\n\[${HOST_COLOR}\]${LOAD_PROMPT} \[${GREEN}\][\[${blue}\]\u@\h\[${GREEN}\]]-[\[${purple}\]\${NEW_PWD}\[${GREEN}\]]-[\[${green}\]\$(date +%k:%M)\[${GREEN}\]]\[${GIT_PROMPT}\]\[${RVM_PROMPT}\]\n\[${GREEN}\]#\[${GREEN}\]:>\[${NC}\] "
   fi
 }
 if [ $PROMPT = "power" ]; then
