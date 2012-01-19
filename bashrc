@@ -396,6 +396,8 @@ function host_load()
     #LOAD_PROMPT="#--"
     LOAD_PROMPT="▂"
   fi
+
+  LOAD_PROMPT=${ONEHUNDRED}
 }
 
 function git_prompt()
@@ -422,7 +424,7 @@ function rvm_prompt()
      [ "$IS_GLOBAL" != "" ];  then
     #RVM_VERSION_EVAL=`(~/.rvm/bin/rvm-prompt)`
 
-    RVM_PROMPT="-[${GREEN}\]\[${CYAN}\]rvm:\[${IS_GLOBAL}\]\[${GREEN}\]]"
+    RVM_PROMPT="-[${GREEN}\]\[${CYAN}\]я \[${IS_GLOBAL}\]\[${GREEN}\]]"
   fi
 }
 
