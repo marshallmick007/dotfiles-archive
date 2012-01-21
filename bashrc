@@ -500,13 +500,25 @@ function set_xtitle()
 #@ FUNCTIONS
 #-----------------------------------------------------------
 
+heroku-status() {
+  echo -e "Heroku App Status"
+  echo -e "================="
+  for app in naught asymptote
+  do
+    echo -e "${E_PURPLE}${app}${E_NC}"
+    heroku ps --app $app
+    echo ""
+  done
+}
+
+
 # iTerm2 growl support
 growl() { echo -e $'\e]9;'${1}'\007' ; return  ; }
 
 # Functions
 function _exit()
 {
-  echo -e "${RED}So long and thanks for all the fish${NC}"
+  echo -e "${E_RED}So long and thanks for all the fish${E_NC}"
 }
 trap _exit EXIT
 
