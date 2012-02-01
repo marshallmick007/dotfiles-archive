@@ -4,3 +4,4 @@ gitconfig
 httpd-vhosts.conf
 AddressBook_Configuration.plist
 .DS_Store
+mongod.conf

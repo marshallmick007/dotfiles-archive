@@ -878,6 +878,8 @@ function show-archive()  # not tested on mac
         cp ~/.vim/README.markdown ${BPATH}/vim/README.markdown
         cp ~/.vimrc.local ${BPATH}/vimrc.local
         cp ~/.gvimrc.local ${BPATH}/gvimrc.local
+        echo "Backing up MongoDb"
+        cp ~/.mongodb/mongod.conf ${BPATH}/mongod.conf
 
         echo -e "${E_PURPLE}Dumping dot files to github dropbox. ${BACKUPGIT}${E_NC}"
         cp -Rv ${BPATH}/* ${BACKUPGIT}
