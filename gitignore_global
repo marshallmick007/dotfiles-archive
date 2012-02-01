@@ -24,3 +24,8 @@
 ehthumbs.db
 Icon?
 Thumbs.db
+
+# Other Files #
+###############
+.rvmrc
+
