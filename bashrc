@@ -871,6 +871,10 @@ function show-archive()  # not tested on mac
         cp ~/.gdbinit ${BPATH}/gdbinit
         echo "Backing up .rvmrc file to ${BPATH}/rvmrc"
         cp ~/.rvmrc ${BPATH}/rvmrc
+        echo "Backing up Ruby files..."
+        cp ~/.irbrc ${BPATH}/irbrc
+        cp ~/.pryrc ${BPATH}/pryrc
+        cp ~/.aprc ${BPATH}/aprc
         echo "Backing up VIM"
         cp ~/.janus.rake ${BPATH}/vim/janus.rake
         cp ~/.vim/vimrc ${BPATH}/vim/vimrc

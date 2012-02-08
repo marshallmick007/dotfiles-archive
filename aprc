@@ -1,0 +1,4 @@
+#https://github.com/michaeldv/awesome_print
+AwesomePrint.defaults = {
+  :indent => -2
+}
