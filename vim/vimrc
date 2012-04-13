@@ -20,6 +20,10 @@ set ruler       " show the cursor position all the time
 set cursorline
 set showcmd     " display incomplete commands
 
+if has('gui_macvim')
+  set guifont=Menlo\ Regular\ for\ Powerline:h14
+endif
+
 " Allow backgrounding buffers without writing them, and remember marks/undo
 " for backgrounded buffers
 set hidden
@@ -77,6 +81,9 @@ set scrolloff=3
 
 " don't use Ex mode, use Q for formatting
 map Q gq
+
+" from vimbits.org
+map Y y$
 
 " clear the search buffer when hitting return
 :nnoremap <CR> :nohlsearch<cr>
@@ -137,3 +144,11 @@ if has("statusline") && !&cp
 endif
 
 let g:CommandTMaxHeight=10
+
+" Powerline settings
+" https://github.com/Lokaltog/vim-powerline
+
+let g:Powerline_symbols = 'fancy'
+"https://github.com/Lokaltog/vim-powerline/wiki/Statusline-segments
+call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+

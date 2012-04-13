@@ -1,6 +1,5 @@
 " map the Leader
 
-
 let mapleader=","
 
 syntax enable

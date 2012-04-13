@@ -310,6 +310,7 @@ alias rm="rm -i"
 #alias ve="vi ~/.vimrc"
 alias vi="mvim"
 alias vim="mvim"
+alias ff="/Applications/Firefox.app/Contents/MacOS/firefox-bin"
 
 alias HEX="ruby -e 'printf(\"0x%X\n\", ARGV[0])'"
 alias DEC="ruby -e 'printf(\"%d\n\", ARGV[0])'"
