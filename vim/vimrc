@@ -1,3 +1,4 @@
+"" Marshall's vim config
 ""
 "" Thanks:
 ""   Gary Bernhardt  <destroyallsoftware.com>
@@ -22,6 +23,7 @@ set showcmd     " display incomplete commands
 
 if has('gui_macvim')
   set guifont=Menlo\ Regular\ for\ Powerline:h14
+  "set guifont=Inconsolata-dz\ for\ Powerline:h14
 endif
 
 " Allow backgrounding buffers without writing them, and remember marks/undo
@@ -42,9 +44,9 @@ set listchars=tab:▸\              " a tab should display as "  ", trailing whi
 "set listchars+=eol:¬
 set listchars+=trail:·
 set listchars+=extends:>          " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the right of the screen
+" off and the line continues beyond the right of the screen
 set listchars+=precedes:<         " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the right of the screen
+" off and the line continues beyond the right of the screen
 "" Searching
 set hlsearch                      " highlight matches
 set incsearch                     " incremental searching
@@ -73,7 +75,7 @@ if has("autocmd")
   " Remember last location in file, but not for commit messages.
   " see :help last-position-jump
   au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g`\"" | endif
+        \| exe "normal! g`\"" | endif
 endif
 
 " provide some context when editing
@@ -90,17 +92,13 @@ map Y y$
 
 let mapleader=","
 
-map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gf :CommandTFlush<cr>\|:CommandT features<cr>
-map <leader>gg :topleft 100 :split Gemfile<cr>
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+
+" New CtrlP implementation - https://github.com/kien/ctrlp.vim
+map <leader>f :CtrlP<cr>
+map <leader>d :CtrlPMRU<cr>
+
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
 nnoremap <leader><leader> <c-^>
 
@@ -142,6 +140,17 @@ if has("statusline") && !&cp
   " Show char code and byte under the cursor
   " set statusline+=[%b][0x%B]
 endif
+
+
+" Strip trailing whitespace (,ss)
+function! StripWhitespace()
+  let save_cursor = getpos(".")
+  let old_query = getreg('/')
+  :%s/\s\+$//e
+  call setpos('.', save_cursor)
+  call setreg('/', old_query)
+endfunction
+noremap <leader>ss :call StripWhitespace()<CR>
 
 let g:CommandTMaxHeight=10
 

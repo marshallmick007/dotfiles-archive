@@ -1,4 +1,5 @@
-color vilight
+"color vilight
+color Tomorrow-Night
 "set guifont=Menlo\ Regular:h14
 "set guifont=Consolas\ Bold:h15
 set linespace=2
