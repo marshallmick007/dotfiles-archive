@@ -13,6 +13,13 @@ if [ "$PS1" ]; then  # If running interactively, then run till fi at EOF:
     export TERM=xterm
   fi
 
+  #-----------------------------------------------------------
+  #@ PATH
+  #-----------------------------------------------------------
+  if [ "$UID" -eq 0 ]; then
+    PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
+  fi
+  PATH=$PATH:$HOME/bin:/usr/local/bin:/opt/local/bin;
 
   export LS_COLORS="no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;00:cd=40;33;00:or=00;05;37;41:mi=00;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:"
 
@@ -212,14 +219,19 @@ if [ "$PS1" ]; then  # If running interactively, then run till fi at EOF:
   #-----------------------------------------------------------
 
  # This loads RVM into a shell session.
- [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"   
+ #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+  # rbenv
+  echo "installing rbenv"
+  eval "$(rbenv init -)"
+  #rbenv init -
 
   source ~/.git-completion.bash
 
 
   function get_git_branch() {
-  echo `git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-}
+    echo `git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+  }
 
 #-----------------------------------------------------------
 #@ Bash settings
@@ -286,7 +298,7 @@ alias du="du -h"
 alias lh="ls -lh .[a-zA-Z0-9]*"
 alias ll="ls -lh"
 alias lla="ls -lha"
-alias ls="ls -h"
+alias ls="ls -G -h"
 #alias m="~/bin/motd.pl"
 #alias me="vi ~/.muttrc"
 alias mkdir="mkdir -p"
@@ -323,14 +335,6 @@ alias WORD="ruby -e 'printf(\"0x%04X\n\", ARGV[0])'"
 alias myip="jsonip.rb"
 alias flush="dscacheutil -flushcache" # Flush DNS cache
 
-#-----------------------------------------------------------
-#@ PATH
-#-----------------------------------------------------------
-if [ "$UID" -eq 0 ]; then
-  PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
-fi
-PATH=$PATH:$HOME/bin:/opt/local/bin
-
 
 #-----------------------------------------------------------
 #@ STARTUP
@@ -345,9 +349,10 @@ fi
 
 # copy from somewhere, don't know how it works
 # remove duplicate path
-export PATH=$(echo $PATH | awk -F: '
-{ for (i = 1; i <= NF; i++) arr[$i]; }
-END { for (i in arr) printf "%s:" , i; printf "\n"; } ')
+#export PATH=$(echo $PATH | awk -F: '
+#{ for (i = 1; i <= NF; i++) arr[$i]; }
+#END { for (i in arr) printf "%s:" , i; printf "\n"; } ')
+
 
 # Misc Variables
 export EDITOR="nano"
@@ -469,7 +474,8 @@ function power_prompt()
   set_xtitle
   git_prompt
   short_pwd
-  rvm_prompt
+  RVM_PROMPT=""
+  # rvm_prompt
   if [ "$UID" -eq 0 ]; then
     PS1="[\[${HOST_COLOR}\]\t\[${NC}\]][\[${red}\]\u@\h:\w >\[${NC}\] "
   else
@@ -792,9 +798,23 @@ function show-archive()  # not tested on mac
       done
     }
 
-    function jquery()
+    function dvdrip()
     {
-      curl http://code.jquery.com/jquery-1.6.min.js > jquery.js
+      if [ -f $1 ]; then
+        dvdbackup -M -n $1 -i /dev/disk1 -o ~/tmp/dvd
+      else
+        echo "Please supply the name of the DVD"
+      fi
+    }
+
+    function resizeimg()
+    {
+      if [ $# -eq 0 ]; then
+        echo "Please supply one or more images to resize"
+      else
+        echo "Resizing $# image(s) to max width of 1024"
+        sips --resampleHeightWidthMax 1024 "$1"
+      fi
     }
 
     function rot13()
@@ -866,6 +886,8 @@ function show-archive()  # not tested on mac
         cp /Applications/MAMP/conf/apache/httpd.conf ${BPATH}/httpd.conf
         echo "Backing up httpd-vhosts.conf file to ${BPATH}/httpd-vhosts.conf"
         cp /Applications/MAMP/conf/apache/httpd-vhosts.conf ${BPATH}/httpd-vhosts.conf
+        echo "Backing up zzz_pow.conf file to ${BPATH}/zzz_pow.conf"
+        cp /Applications/MAMP/conf/apache/other/zzz_pow.conf ${BPATH}/zzz_pow.conf
         echo "Backing up powconfig configuration"
         cp ~/.powconfig ${BPATH}/powconfig
         echo "Backing up .gdbinit"
