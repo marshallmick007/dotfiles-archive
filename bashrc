@@ -324,6 +324,8 @@ alias vi="mvim"
 alias vim="mvim"
 alias ff="/Applications/Firefox.app/Contents/MacOS/firefox-bin"
 
+alias f='open -a Finder '
+
 alias HEX="ruby -e 'printf(\"0x%X\n\", ARGV[0])'"
 alias DEC="ruby -e 'printf(\"%d\n\", ARGV[0])'"
 alias BIN="ruby -e 'printf(\"%bb\n\", ARGV[0])'"
@@ -453,7 +455,7 @@ vim_pwd()
 short_pwd()
 {
   # How many characters of the $PWD should be kept
-  local pwdmaxlen=35
+  local pwdmaxlen=55
   # Indicate that there has been dir truncation
   local trunc_symbol=".."
   local dir=${PWD##*/}
@@ -898,6 +900,8 @@ function show-archive()  # not tested on mac
         cp ~/.irbrc ${BPATH}/irbrc
         cp ~/.pryrc ${BPATH}/pryrc
         cp ~/.aprc ${BPATH}/aprc
+        echo "Backing up .osx"
+        cp ~/.osx ${BPATH}/_osx
         echo "Backing up VIM"
         cp ~/.janus.rake ${BPATH}/vim/janus.rake
         cp ~/.vim/vimrc ${BPATH}/vim/vimrc

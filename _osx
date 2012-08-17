@@ -1,0 +1,5 @@
+
+# Enable AirDrop on unsupported devices
+# http://onethingwell.org/post/29338252701/enable-airdrop-on-older-macs
+
+defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
