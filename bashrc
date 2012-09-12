@@ -14,13 +14,14 @@ if [ "$PS1" ]; then  # If running interactively, then run till fi at EOF:
   fi
 
   #-----------------------------------------------------------
-  #@ PATH
+  #@ PATH (moved to zsh)
   #-----------------------------------------------------------
   if [ "$UID" -eq 0 ]; then
     PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
   fi
-  PATH=$PATH:$HOME/bin:/usr/local/bin:/opt/local/bin;
-
+  PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH;
+  
+  # moved to zsh
   export LS_COLORS="no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;00:cd=40;33;00:or=00;05;37;41:mi=00;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:"
 
   #--- custom variables here - you shouldn't need to change anything above here ---#
@@ -28,6 +29,7 @@ if [ "$PS1" ]; then  # If running interactively, then run till fi at EOF:
   WTERM="xterm"           # could also be rxvt
   INTERFACE="en1"    # sadly, not always eth0, and very annoying to autodetect
   NEVER_USE_X="Y"         # override helpful autosetting of use_x when x-server detected
+  
   BACKUPDIR="${HOME}/Dropbox/backups" # Backup directory
   BACKUPGIT="${HOME}/work/dotfiles"   # dotfiles git directory 
   #--- end custom variables, you shouldn't need to change anything below here --#
@@ -37,7 +39,7 @@ if [ "$PS1" ]; then  # If running interactively, then run till fi at EOF:
 
 
   #-----------------------------------------------------------
-  #@ Colors
+  #@ Colors (not needed in zsh)
   #-----------------------------------------------------------
 
   #  Black       0;30     Dark Gray     1;30
@@ -105,6 +107,7 @@ if [ "$PS1" ]; then  # If running interactively, then run till fi at EOF:
   bakwht='\e[47m'   # White
   txtrst='\e[0m'    # Text Reset
 
+  # moved to zsh
   export LESS_TERMCAP_mb=$'\E[01;35m'
   export LESS_TERMCAP_md=$'\E[01;34m'
   export LESS_TERMCAP_me=$'\E[0m'
@@ -174,7 +177,7 @@ if [ "$PS1" ]; then  # If running interactively, then run till fi at EOF:
   fi
 
   #-----------------------------------------------------------
-  #@ Setup $HOME
+  #@ Setup $HOME (moved to zsh plugin)
   #-----------------------------------------------------------
   if [ ! -d "${HOME}/bin" ]; then
     mkdir ${HOME}/bin
@@ -226,7 +229,8 @@ if [ "$PS1" ]; then  # If running interactively, then run till fi at EOF:
   eval "$(rbenv init -)"
   #rbenv init -
 
-  source ~/.git-completion.bash
+  source ~/bin/git-prompt.sh
+  source ~/bin/git-completion.bash
 
 
   function get_git_branch() {
@@ -267,7 +271,7 @@ stty stop undef
 stty start undef
 
 #-----------------------------------------------------------
-#@ Aliases
+#@ Aliases  (moved to zsh)
 #-----------------------------------------------------------
 
 # Enable Bashmarks
@@ -339,14 +343,14 @@ alias flush="dscacheutil -flushcache" # Flush DNS cache
 
 
 #-----------------------------------------------------------
-#@ STARTUP
+#@ STARTUP  (moved to zsh plugin)
 #-----------------------------------------------------------
 if [ -e "/usr/bin/uptime" ]; then
   echo "Uptime: ` /usr/bin/uptime`"
 fi
 
 #-----------------------------------------------------------
-#@ EXPORTS
+#@ EXPORTS  (moved to zsh)
 #-----------------------------------------------------------
 
 # copy from somewhere, don't know how it works
@@ -376,6 +380,7 @@ fi
 #-----------------------------------------------------------
 
 #PS1 function
+# moved to zsh
 function host_load()
 {
   THRESHOLD_MED=33
@@ -408,6 +413,7 @@ function host_load()
   LOAD_PROMPT=${ONEHUNDRED}
 }
 
+# oh-my-zsh handles
 function git_prompt()
 {
   GIT_BRANCH_EVAL=`(__git_ps1 " %s")`
@@ -424,6 +430,7 @@ function git_prompt()
   fi
 }
 
+# deprecated
 function rvm_prompt()
 {
   IS_GLOBAL=`(~/.rvm/bin/rvm-prompt g)`
@@ -436,6 +443,7 @@ function rvm_prompt()
   fi
 }
 
+# moved to zsh
 vim_pwd()
 {
   _pwd=`pwd | sed "s#$HOME#~#"`
@@ -451,7 +459,7 @@ vim_pwd()
   NEW_PWD=$_vimdirname
 }
 
-
+# moved to zsh
 short_pwd()
 {
   # How many characters of the $PWD should be kept
@@ -470,6 +478,7 @@ short_pwd()
   fi
 }
 
+# moved to zsh
 function power_prompt()
 {
   host_load
@@ -548,7 +557,7 @@ function sendbashrc()
   scp ~/.bashrc $1:~/.bashrc.$HOST
 }
 
-# Cool History Summerizer
+# Cool History Summerizer (moved to zsh)
 historyhawk()
 { 
   history|awk '{a[$2]++}END{for(i in a){printf"%5d\t%s\n",a[i],i}}'|sort -nr|head; 
@@ -596,6 +605,7 @@ function lsofg()
   fi
 }
 
+# moved to zsh
 function ls-net()
 {
   lsof -nPi | cut -f 1 -d " "| uniq | tail -n +2
@@ -612,6 +622,7 @@ mkcd () {
   cd "$*"
 }
 
+# moved to zsh
 function serve() 
 { 
   python -m SimpleHTTPServer ${1:-8080} 
@@ -658,6 +669,7 @@ function local_ip()
   echo `ifconfig en1 | grep "inet" | grep -v 127.0.0.1 | grep -v inet6 | awk '{print $2}'`
 }
 
+# moved to zsh
 function ii()  # get current host related info  # kind of works on mac.  different interface.  dynamic-able?
 {
   echo -e "\nYou are logged onto ${E_PURPLE}$HOST"
@@ -800,6 +812,7 @@ function show-archive()  # not tested on mac
       done
     }
 
+    #moved to zsh
     function dvdrip()
     {
       if [ -f $1 ]; then
@@ -809,6 +822,7 @@ function show-archive()  # not tested on mac
       fi
     }
 
+    #moved to zsh
     function resizeimg()
     {
       if [ $# -eq 0 ]; then
@@ -853,6 +867,7 @@ function show-archive()  # not tested on mac
       mvim ~/.bashrc
     }
 
+    #moved to zsh
     function restart_pow()
     {
       echo "*** Stopping the Pow server..."
@@ -862,6 +877,7 @@ function show-archive()  # not tested on mac
       echo "Done"
     }
 
+    #moved to zsh
     function clean_downloads()
     {
       ~/bin/sweep.rb ~/Downloads
