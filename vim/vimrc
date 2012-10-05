@@ -154,6 +154,9 @@ noremap <leader>ss :call StripWhitespace()<CR>
 
 let g:CommandTMaxHeight=10
 
+" easybuffer.vim
+map <leader>b :EasyBufferHorizontal<cr>
+
 " Powerline settings
 " https://github.com/Lokaltog/vim-powerline
 
