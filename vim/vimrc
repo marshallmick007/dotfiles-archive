@@ -22,7 +22,8 @@ set cursorline
 set showcmd     " display incomplete commands
 
 if has('gui_macvim')
-  set guifont=Menlo\ Regular\ for\ Powerline:h14
+  "set guifont=Menlo\ Regular\ for\ Powerline:h14
+  set guifont=Source\ Code\ Pro:h13
   "set guifont=Inconsolata-dz\ for\ Powerline:h14
 endif
 
