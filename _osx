@@ -3,3 +3,8 @@
 # http://onethingwell.org/post/29338252701/enable-airdrop-on-older-macs
 
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
+
+# Disable OSX Full Screen for MacVim
+# http://www.laktek.com/2012/09/05/distraction-free-writing-with-vim/
+
+defaults write org.vim.MacVim MMNativeFullScreen 0

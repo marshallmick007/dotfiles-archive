@@ -53,6 +53,8 @@ export LSCOLORS="exfxcxdxbxegedabagacad"
 #fix hard to read autocompletion colors
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
+# zmv!!! $ zmv '(*).txt' '${1}.bak'
+autoload zmv
 
 echo "installing rbenv"
 export RBENV_ROOT="${HOME}/.rbenv"

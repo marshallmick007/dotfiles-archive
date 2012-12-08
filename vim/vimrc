@@ -158,6 +158,16 @@ let g:CommandTMaxHeight=10
 " easybuffer.vim
 map <leader>b :EasyBufferHorizontal<cr>
 
+" watch-for-changes.vim
+map <leader>w :WatchForChanges!<cr>
+
+" Distraction Free Writing - 
+" https://github.com/laktek/distraction-free-writing-vim
+let g:fullscreen_colorscheme = "iawriter"
+let g:fullscreen_font = "Cousine:h14"
+let g:normal_colorscheme = "Tomorrow-Night-Bright"
+let g:normal_font="Source\ Code\ Pro:h13"
+
 " Powerline settings
 " https://github.com/Lokaltog/vim-powerline
 
