@@ -29,7 +29,7 @@ ZSH_THEME="mick"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew gem heroku osx powder rbenv rake ruby startup mybackup)
+plugins=(git brew gem heroku osx powder rbenv rake ruby history startup mybackup)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -43,6 +43,7 @@ set -g visual-bell on
 
 # for Postgress.app
 PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
+PATH="/Applications/MAMP/bin/php5.2/bin:$PATH"
 PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH;
 
 # better LS colors

@@ -15,7 +15,7 @@ call pathogen#infect()
 filetype plugin indent on
 
 set background=dark
-color molokai
+color base16-woodsy
 set nonumber
 set ruler       " show the cursor position all the time
 set cursorline
@@ -163,10 +163,14 @@ map <leader>w :WatchForChanges!<cr>
 
 " Distraction Free Writing - 
 " https://github.com/laktek/distraction-free-writing-vim
+"
+" Default keybinding is F4
 let g:fullscreen_colorscheme = "iawriter"
 let g:fullscreen_font = "Cousine:h14"
-let g:normal_colorscheme = "Tomorrow-Night-Bright"
+let g:normal_colorscheme = "base16-woodsy"
 let g:normal_font="Source\ Code\ Pro:h13"
+
+map <leader>5 :call ToggleDistractionFreeWriting()<CR>
 
 " Powerline settings
 " https://github.com/Lokaltog/vim-powerline
