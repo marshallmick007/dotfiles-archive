@@ -94,3 +94,7 @@ defaults write com.apple.dock wvous-tr-modifier -int 0
 # Top left screen corner → Desktop
 defaults write com.apple.dock wvous-tl-corner -int 4
 defaults write com.apple.dock wvous-tl-modifier -int 0
+
+# Disable MobileBackups
+# http://wiki.summercode.com/how_to_disable_mobile_backups_on_lion
+sudo tmutil disablelocal

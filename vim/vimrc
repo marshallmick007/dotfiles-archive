@@ -97,7 +97,8 @@ let mapleader=","
 
 " New CtrlP implementation - https://github.com/kien/ctrlp.vim
 map <leader>f :CtrlP<cr>
-map <leader>d :CtrlPMRU<cr>
+map <leader>m :CtrlPMRU<cr>
+map <leader>h :Dash!<cr>
 
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>

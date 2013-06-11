@@ -64,7 +64,7 @@ echo "installing rbenv"
 export RBENV_ROOT="${HOME}/.rbenv"
 eval "$(rbenv init -)"
 
-export EDITOR="nano"
+export EDITOR="${ZSH}/custom/plugins/editor/editor.plugin.zsh"
 export VISUAL="nano"
 export PAGER=less
 
