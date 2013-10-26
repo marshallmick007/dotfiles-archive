@@ -1,5 +1,5 @@
 "color vilight
-color base16-woodsy
+""color base16-woodsy
 "set guifont=Menlo\ Regular:h14
 "set guifont=Consolas\ Bold:h15
 set linespace=2

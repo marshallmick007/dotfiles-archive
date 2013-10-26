@@ -29,7 +29,7 @@ ZSH_THEME="mick"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew gem heroku osx powder rbenv rake ruby history startup mybackup)
+plugins=(git brew gem heroku osx powder rbenv rake ruby history startup mybackup osx-dev)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -60,9 +60,11 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # zmv!!! $ zmv '(*).txt' '${1}.bak'
 autoload zmv
 
-echo "installing rbenv"
-export RBENV_ROOT="${HOME}/.rbenv"
-eval "$(rbenv init -)"
+if [[ -f $(which rbenv) ]]; then
+  echo "installing rbenv"
+  export RBENV_ROOT="${HOME}/.rbenv"
+  eval "$(rbenv init -)"
+fi
 
 export EDITOR="${ZSH}/custom/plugins/editor/editor.plugin.zsh"
 export VISUAL="nano"
